@@ -1,0 +1,4 @@
+url: https://youtrack.example.com
+token: perm:your-permanent-token
+timeout: 30s
+log_level: info

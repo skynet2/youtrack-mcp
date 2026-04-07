@@ -1,0 +1,13 @@
+openapi.json
+bin/
+
+.env
+.env.*
+*.pem
+*.key
+config.yaml
+config.local.yaml
+.idea/
+.vscode/
+*.iml
+.DS_Store
