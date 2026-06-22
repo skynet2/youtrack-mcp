@@ -26,7 +26,7 @@ or set env vars (prefix `YOUTRACK_`):
 | `YOUTRACK_LOG_LEVEL` | Log level: `debug`, `info`, `warn`, `error` (default `info`) |
 | `YOUTRACK_TRANSPORT` | Transport: `stdio` (default) or `http` |
 | `YOUTRACK_LISTEN_ADDR` | HTTP listen address (default `:8080`, http only) |
-| `YOUTRACK_API_KEY` | Bearer key required to access the HTTP transport (http only) |
+| `YOUTRACK_API_KEY` | Bearer key for the HTTP transport; if empty, auth is disabled (http only) |
 
 ## Usage
 
@@ -86,7 +86,9 @@ Clients connect to `http://host:8080/mcp` and must send the key:
     Authorization: Bearer change-me-strong-key
 
 Requests without a valid `Bearer` key get `401 Unauthorized`. The key is
-compared in constant time.
+compared in constant time. If `api_key` is left empty, authentication is
+disabled and every request is allowed — only do this on a fully trusted
+network.
 
 > **Note:** the HTTP transport does not terminate TLS — the `Authorization`
 > header is sent in plaintext. Run it behind a TLS-terminating reverse proxy

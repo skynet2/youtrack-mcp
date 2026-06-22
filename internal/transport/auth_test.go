@@ -41,6 +41,30 @@ func TestBearerAuth_Allows(t *testing.T) {
 	}
 }
 
+func TestBearerAuth_DisabledWhenKeyEmpty(t *testing.T) {
+	cases := map[string]string{
+		"no header":     "",
+		"random bearer": "Bearer whatever",
+	}
+
+	next := http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
+	handler := transport.BearerAuth(next, "")
+
+	for name, header := range cases {
+		t.Run(name, func(t *testing.T) {
+			req := httptest.NewRequest(http.MethodPost, "/", nil)
+			req.Header.Set("Authorization", header)
+			rec := httptest.NewRecorder()
+
+			handler.ServeHTTP(rec, req)
+
+			require.Equal(t, http.StatusOK, rec.Code)
+		})
+	}
+}
+
 func TestBearerAuth_Rejects(t *testing.T) {
 	cases := map[string]string{
 		"missing header": "",

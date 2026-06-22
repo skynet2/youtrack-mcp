@@ -7,4 +7,5 @@ log_level: info
 transport: stdio
 # http transport only:
 listen_addr: ":8080"
+# api_key: bearer key clients must send; leave empty to disable auth (trusted networks only)
 api_key: change-me-strong-key

@@ -61,6 +61,10 @@ func serveHTTP(parent context.Context, srv *server.MCPServer, cfg config.Config,
 		Handler: transport.BearerAuth(streamable, cfg.APIKey),
 	}
 
+	if cfg.APIKey == "" {
+		logger.Warn().Msg("http transport running without api_key: authentication disabled")
+	}
+
 	ctx, stop := signal.NotifyContext(parent, syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 

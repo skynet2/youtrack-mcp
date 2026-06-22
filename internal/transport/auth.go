@@ -9,6 +9,10 @@ import (
 const bearerPrefix = "Bearer "
 
 func BearerAuth(next http.Handler, key string) http.Handler {
+	if key == "" {
+		return next
+	}
+
 	want := []byte(key)
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		header := r.Header.Get("Authorization")

@@ -60,11 +60,7 @@ func Load(path string) (Config, error) {
 		return Config{}, errors.New("config: token is required")
 	}
 	switch cfg.Transport {
-	case TransportStdio:
-	case TransportHTTP:
-		if cfg.APIKey == "" {
-			return Config{}, errors.New("config: api_key is required for http transport")
-		}
+	case TransportStdio, TransportHTTP:
 	default:
 		return Config{}, fmt.Errorf("config: unknown transport %q", cfg.Transport)
 	}

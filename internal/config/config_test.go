@@ -45,6 +45,16 @@ func TestLoad_Success(t *testing.T) {
 			wantAPIKey:     "topsecret",
 		},
 		{
+			name:           "http transport without api key",
+			yaml:           "url: https://yt.example.com\ntoken: abc123\ntransport: http\n",
+			wantURL:        "https://yt.example.com",
+			wantToken:      "abc123",
+			wantTimeout:    30 * time.Second,
+			wantLogLevel:   "info",
+			wantTransport:  "http",
+			wantListenAddr: ":8080",
+		},
+		{
 			name: "env overrides yaml url",
 			yaml: "url: https://yt.example.com\ntoken: abc123\n",
 			env: map[string]string{
@@ -124,11 +134,6 @@ func TestLoad_Failure(t *testing.T) {
 			name:    "missing token",
 			yaml:    "url: https://yt.example.com\n",
 			wantErr: "config: token is required",
-		},
-		{
-			name:    "http transport without api key",
-			yaml:    "url: https://yt.example.com\ntoken: abc123\ntransport: http\n",
-			wantErr: "config: api_key is required for http transport",
 		},
 		{
 			name:    "unknown transport",
