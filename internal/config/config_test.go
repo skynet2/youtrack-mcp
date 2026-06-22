@@ -12,21 +12,47 @@ import (
 
 func TestLoad_Success(t *testing.T) {
 	tests := []struct {
-		name         string
-		yaml         string
-		env          map[string]string
-		wantURL      string
-		wantToken    string
-		wantTimeout  time.Duration
-		wantLogLevel string
+		name           string
+		yaml           string
+		env            map[string]string
+		wantURL        string
+		wantToken      string
+		wantTimeout    time.Duration
+		wantLogLevel   string
+		wantTransport  string
+		wantListenAddr string
+		wantAPIKey     string
 	}{
 		{
-			name:         "yaml only",
-			yaml:         "url: https://yt.example.com\ntoken: abc123\n",
-			wantURL:      "https://yt.example.com",
-			wantToken:    "abc123",
-			wantTimeout:  30 * time.Second,
-			wantLogLevel: "info",
+			name:           "yaml only",
+			yaml:           "url: https://yt.example.com\ntoken: abc123\n",
+			wantURL:        "https://yt.example.com",
+			wantToken:      "abc123",
+			wantTimeout:    30 * time.Second,
+			wantLogLevel:   "info",
+			wantTransport:  "stdio",
+			wantListenAddr: ":8080",
+		},
+		{
+			name:           "http transport with api key",
+			yaml:           "url: https://yt.example.com\ntoken: abc123\ntransport: http\nlisten_addr: \":9000\"\napi_key: topsecret\n",
+			wantURL:        "https://yt.example.com",
+			wantToken:      "abc123",
+			wantTimeout:    30 * time.Second,
+			wantLogLevel:   "info",
+			wantTransport:  "http",
+			wantListenAddr: ":9000",
+			wantAPIKey:     "topsecret",
+		},
+		{
+			name:           "http transport without api key",
+			yaml:           "url: https://yt.example.com\ntoken: abc123\ntransport: http\n",
+			wantURL:        "https://yt.example.com",
+			wantToken:      "abc123",
+			wantTimeout:    30 * time.Second,
+			wantLogLevel:   "info",
+			wantTransport:  "http",
+			wantListenAddr: ":8080",
 		},
 		{
 			name: "env overrides yaml url",
@@ -34,10 +60,12 @@ func TestLoad_Success(t *testing.T) {
 			env: map[string]string{
 				"YOUTRACK_URL": "https://override.example.com",
 			},
-			wantURL:      "https://override.example.com",
-			wantToken:    "abc123",
-			wantTimeout:  30 * time.Second,
-			wantLogLevel: "info",
+			wantURL:        "https://override.example.com",
+			wantToken:      "abc123",
+			wantTimeout:    30 * time.Second,
+			wantLogLevel:   "info",
+			wantTransport:  "stdio",
+			wantListenAddr: ":8080",
 		},
 		{
 			name: "env only without yaml file",
@@ -45,18 +73,22 @@ func TestLoad_Success(t *testing.T) {
 				"YOUTRACK_URL":   "https://env.example.com",
 				"YOUTRACK_TOKEN": "envtoken",
 			},
-			wantURL:      "https://env.example.com",
-			wantToken:    "envtoken",
-			wantTimeout:  30 * time.Second,
-			wantLogLevel: "info",
+			wantURL:        "https://env.example.com",
+			wantToken:      "envtoken",
+			wantTimeout:    30 * time.Second,
+			wantLogLevel:   "info",
+			wantTransport:  "stdio",
+			wantListenAddr: ":8080",
 		},
 		{
-			name:         "defaults for timeout and log_level",
-			yaml:         "url: https://yt.example.com\ntoken: abc123\ntimeout: 10s\nlog_level: debug\n",
-			wantURL:      "https://yt.example.com",
-			wantToken:    "abc123",
-			wantTimeout:  10 * time.Second,
-			wantLogLevel: "debug",
+			name:           "defaults for timeout and log_level",
+			yaml:           "url: https://yt.example.com\ntoken: abc123\ntimeout: 10s\nlog_level: debug\n",
+			wantURL:        "https://yt.example.com",
+			wantToken:      "abc123",
+			wantTimeout:    10 * time.Second,
+			wantLogLevel:   "debug",
+			wantTransport:  "stdio",
+			wantListenAddr: ":8080",
 		},
 	}
 
@@ -79,6 +111,9 @@ func TestLoad_Success(t *testing.T) {
 			assert.Equal(t, tt.wantToken, cfg.Token)
 			assert.Equal(t, tt.wantTimeout, cfg.Timeout)
 			assert.Equal(t, tt.wantLogLevel, cfg.LogLevel)
+			assert.Equal(t, tt.wantTransport, cfg.Transport)
+			assert.Equal(t, tt.wantListenAddr, cfg.ListenAddr)
+			assert.Equal(t, tt.wantAPIKey, cfg.APIKey)
 		})
 	}
 }
@@ -99,6 +134,11 @@ func TestLoad_Failure(t *testing.T) {
 			name:    "missing token",
 			yaml:    "url: https://yt.example.com\n",
 			wantErr: "config: token is required",
+		},
+		{
+			name:    "unknown transport",
+			yaml:    "url: https://yt.example.com\ntoken: abc123\ntransport: grpc\n",
+			wantErr: `config: unknown transport "grpc"`,
 		},
 	}
 

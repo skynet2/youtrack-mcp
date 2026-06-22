@@ -5,7 +5,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/skynet2/youtrack-mcp)](https://goreportcard.com/report/github.com/skynet2/youtrack-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-MCP stdio server for [JetBrains YouTrack](https://www.jetbrains.com/youtrack/) issue tracking.
+MCP server for [JetBrains YouTrack](https://www.jetbrains.com/youtrack/) issue tracking. Runs over **stdio** (default) or **streamable HTTP** with bearer-key auth for private-network deployments.
 
 ## Install
 
@@ -24,6 +24,9 @@ or set env vars (prefix `YOUTRACK_`):
 | `YOUTRACK_TOKEN` | Permanent token (Hub → Profile → Authentication) |
 | `YOUTRACK_TIMEOUT` | HTTP timeout (default `30s`) |
 | `YOUTRACK_LOG_LEVEL` | Log level: `debug`, `info`, `warn`, `error` (default `info`) |
+| `YOUTRACK_TRANSPORT` | Transport: `stdio` (default) or `http` |
+| `YOUTRACK_LISTEN_ADDR` | HTTP listen address (default `:8080`, http only) |
+| `YOUTRACK_API_KEY` | Bearer key for the HTTP transport; if empty, auth is disabled (http only) |
 
 ## Usage
 
@@ -52,6 +55,44 @@ Add to `~/.claude.json`:
 Any MCP-compatible client can launch the binary as a stdio server:
 
     /path/to/youtrack-mcp
+
+## Transports
+
+### stdio (default)
+
+The server speaks MCP over stdin/stdout — the standard mode for local clients
+that launch the binary as a subprocess (see examples above).
+
+### Streamable HTTP
+
+For exposing the server on a private network, run it as an HTTP server
+protected by a fixed bearer key:
+
+```yaml
+# config.yaml
+url: https://youtrack.example.com
+token: perm:your-permanent-token
+transport: http
+listen_addr: ":8080"
+api_key: change-me-strong-key
+```
+
+Or via env:
+
+    YOUTRACK_TRANSPORT=http YOUTRACK_LISTEN_ADDR=:8080 YOUTRACK_API_KEY=change-me-strong-key /path/to/youtrack-mcp
+
+Clients connect to `http://host:8080/mcp` and must send the key:
+
+    Authorization: Bearer change-me-strong-key
+
+Requests without a valid `Bearer` key get `401 Unauthorized`. The key is
+compared in constant time. If `api_key` is left empty, authentication is
+disabled and every request is allowed — only do this on a fully trusted
+network.
+
+> **Note:** the HTTP transport does not terminate TLS — the `Authorization`
+> header is sent in plaintext. Run it behind a TLS-terminating reverse proxy
+> (or on a trusted private network) when exposing it beyond localhost.
 
 ## Tools
 

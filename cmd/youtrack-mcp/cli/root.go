@@ -1,8 +1,12 @@
 package cli
 
 import (
+	"context"
+	"errors"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/mark3labs/mcp-go/server"
 	"github.com/rs/zerolog"
@@ -10,6 +14,7 @@ import (
 
 	"github.com/skynet2/youtrack-mcp/cmd/youtrack-mcp/mcp"
 	"github.com/skynet2/youtrack-mcp/internal/config"
+	"github.com/skynet2/youtrack-mcp/internal/transport"
 	"github.com/skynet2/youtrack-mcp/pkg/youtrack"
 )
 
@@ -17,7 +22,7 @@ var configPath string
 
 var rootCmd = &cobra.Command{
 	Use:   "youtrack-mcp",
-	Short: "MCP stdio server for YouTrack",
+	Short: "MCP server for YouTrack (stdio or streamable HTTP)",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		logger := zerolog.New(os.Stderr).With().Timestamp().Logger()
 
@@ -35,6 +40,11 @@ var rootCmd = &cobra.Command{
 		})
 
 		srv := mcp.NewServer(client, logger, "0.1.0")
+
+		if cfg.Transport == config.TransportHTTP {
+			return serveHTTP(cmd.Context(), srv, cfg, logger)
+		}
+
 		logger.Info().Str("url", cfg.URL).Msg("starting MCP stdio server")
 		return server.ServeStdio(srv)
 	},
@@ -42,6 +52,36 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	rootCmd.PersistentFlags().StringVar(&configPath, "config", "config.yaml", "path to config file")
+}
+
+func serveHTTP(parent context.Context, srv *server.MCPServer, cfg config.Config, logger zerolog.Logger) error {
+	streamable := server.NewStreamableHTTPServer(srv)
+	httpSrv := &http.Server{
+		Addr:    cfg.ListenAddr,
+		Handler: transport.BearerAuth(streamable, cfg.APIKey),
+	}
+
+	if cfg.APIKey == "" {
+		logger.Warn().Msg("http transport running without api_key: authentication disabled")
+	}
+
+	ctx, stop := signal.NotifyContext(parent, syscall.SIGINT, syscall.SIGTERM)
+	defer stop()
+
+	go func() {
+		<-ctx.Done()
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), cfg.Timeout)
+		defer cancel()
+		if err := httpSrv.Shutdown(shutdownCtx); err != nil {
+			logger.Error().Err(err).Msg("http shutdown failed")
+		}
+	}()
+
+	logger.Info().Str("url", cfg.URL).Str("addr", cfg.ListenAddr).Msg("starting MCP streamable HTTP server")
+	if err := httpSrv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		return err
+	}
+	return nil
 }
 
 func Execute() error {
