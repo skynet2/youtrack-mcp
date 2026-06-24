@@ -11,3 +11,6 @@ config.local.yaml
 .vscode/
 *.iml
 .DS_Store
+
+# generated mocks (created by `go generate` in CI and locally)
+cmd/youtrack-mcp/mcp/mocks/mock_client.go
