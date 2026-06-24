@@ -6,9 +6,10 @@ import (
 )
 
 var (
-	ErrUnauthorized = errors.New("youtrack: unauthorized")
-	ErrNotFound     = errors.New("youtrack: not found")
-	ErrForbidden    = errors.New("youtrack: forbidden")
+	ErrUnauthorized     = errors.New("youtrack: unauthorized")
+	ErrNotFound         = errors.New("youtrack: not found")
+	ErrForbidden        = errors.New("youtrack: forbidden")
+	ErrLinkTypeNotFound = errors.New("youtrack: link type not found")
 )
 
 type APIError struct {

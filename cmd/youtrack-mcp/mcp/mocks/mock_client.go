@@ -45,9 +45,33 @@ func (m *MockYouTrackClient) ActivityList(ctx context.Context, categories, issue
 }
 
 // ActivityList indicates an expected call of ActivityList.
-func (mr *MockYouTrackClientMockRecorder) ActivityList(ctx, categories, issueQuery, start, end, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ActivityList(ctx, categories, issueQuery, start, end, skip, top interface{}) *YouTrackClientActivityListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ActivityList", reflect.TypeOf((*MockYouTrackClient)(nil).ActivityList), ctx, categories, issueQuery, start, end, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ActivityList", reflect.TypeOf((*MockYouTrackClient)(nil).ActivityList), ctx, categories, issueQuery, start, end, skip, top)
+	return &YouTrackClientActivityListCall{Call: call}
+}
+
+// YouTrackClientActivityListCall wrap *gomock.Call
+type YouTrackClientActivityListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientActivityListCall) Return(arg0 []youtrack.ActivityItem, arg1 error) *YouTrackClientActivityListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientActivityListCall) Do(f func(context.Context, string, string, string, string, int, int) ([]youtrack.ActivityItem, error)) *YouTrackClientActivityListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientActivityListCall) DoAndReturn(f func(context.Context, string, string, string, string, int, int) ([]youtrack.ActivityItem, error)) *YouTrackClientActivityListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // AgileList mocks base method.
@@ -60,9 +84,33 @@ func (m *MockYouTrackClient) AgileList(ctx context.Context, skip, top int) ([]yo
 }
 
 // AgileList indicates an expected call of AgileList.
-func (mr *MockYouTrackClientMockRecorder) AgileList(ctx, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) AgileList(ctx, skip, top interface{}) *YouTrackClientAgileListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AgileList", reflect.TypeOf((*MockYouTrackClient)(nil).AgileList), ctx, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AgileList", reflect.TypeOf((*MockYouTrackClient)(nil).AgileList), ctx, skip, top)
+	return &YouTrackClientAgileListCall{Call: call}
+}
+
+// YouTrackClientAgileListCall wrap *gomock.Call
+type YouTrackClientAgileListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientAgileListCall) Return(arg0 []youtrack.Agile, arg1 error) *YouTrackClientAgileListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientAgileListCall) Do(f func(context.Context, int, int) ([]youtrack.Agile, error)) *YouTrackClientAgileListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientAgileListCall) DoAndReturn(f func(context.Context, int, int) ([]youtrack.Agile, error)) *YouTrackClientAgileListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // ArticleCreate mocks base method.
@@ -75,9 +123,33 @@ func (m *MockYouTrackClient) ArticleCreate(ctx context.Context, article youtrack
 }
 
 // ArticleCreate indicates an expected call of ArticleCreate.
-func (mr *MockYouTrackClientMockRecorder) ArticleCreate(ctx, article interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ArticleCreate(ctx, article interface{}) *YouTrackClientArticleCreateCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleCreate", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleCreate), ctx, article)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleCreate", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleCreate), ctx, article)
+	return &YouTrackClientArticleCreateCall{Call: call}
+}
+
+// YouTrackClientArticleCreateCall wrap *gomock.Call
+type YouTrackClientArticleCreateCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientArticleCreateCall) Return(arg0 youtrack.Article, arg1 error) *YouTrackClientArticleCreateCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientArticleCreateCall) Do(f func(context.Context, youtrack.Article) (youtrack.Article, error)) *YouTrackClientArticleCreateCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientArticleCreateCall) DoAndReturn(f func(context.Context, youtrack.Article) (youtrack.Article, error)) *YouTrackClientArticleCreateCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // ArticleDelete mocks base method.
@@ -89,9 +161,33 @@ func (m *MockYouTrackClient) ArticleDelete(ctx context.Context, id string) error
 }
 
 // ArticleDelete indicates an expected call of ArticleDelete.
-func (mr *MockYouTrackClientMockRecorder) ArticleDelete(ctx, id interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ArticleDelete(ctx, id interface{}) *YouTrackClientArticleDeleteCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleDelete", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleDelete), ctx, id)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleDelete", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleDelete), ctx, id)
+	return &YouTrackClientArticleDeleteCall{Call: call}
+}
+
+// YouTrackClientArticleDeleteCall wrap *gomock.Call
+type YouTrackClientArticleDeleteCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientArticleDeleteCall) Return(arg0 error) *YouTrackClientArticleDeleteCall {
+	c.Call = c.Call.Return(arg0)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientArticleDeleteCall) Do(f func(context.Context, string) error) *YouTrackClientArticleDeleteCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientArticleDeleteCall) DoAndReturn(f func(context.Context, string) error) *YouTrackClientArticleDeleteCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // ArticleGet mocks base method.
@@ -104,9 +200,33 @@ func (m *MockYouTrackClient) ArticleGet(ctx context.Context, id string) (youtrac
 }
 
 // ArticleGet indicates an expected call of ArticleGet.
-func (mr *MockYouTrackClientMockRecorder) ArticleGet(ctx, id interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ArticleGet(ctx, id interface{}) *YouTrackClientArticleGetCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleGet", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleGet), ctx, id)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleGet", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleGet), ctx, id)
+	return &YouTrackClientArticleGetCall{Call: call}
+}
+
+// YouTrackClientArticleGetCall wrap *gomock.Call
+type YouTrackClientArticleGetCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientArticleGetCall) Return(arg0 youtrack.Article, arg1 error) *YouTrackClientArticleGetCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientArticleGetCall) Do(f func(context.Context, string) (youtrack.Article, error)) *YouTrackClientArticleGetCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientArticleGetCall) DoAndReturn(f func(context.Context, string) (youtrack.Article, error)) *YouTrackClientArticleGetCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // ArticleList mocks base method.
@@ -119,9 +239,33 @@ func (m *MockYouTrackClient) ArticleList(ctx context.Context, skip, top int) ([]
 }
 
 // ArticleList indicates an expected call of ArticleList.
-func (mr *MockYouTrackClientMockRecorder) ArticleList(ctx, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ArticleList(ctx, skip, top interface{}) *YouTrackClientArticleListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleList", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleList), ctx, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleList", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleList), ctx, skip, top)
+	return &YouTrackClientArticleListCall{Call: call}
+}
+
+// YouTrackClientArticleListCall wrap *gomock.Call
+type YouTrackClientArticleListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientArticleListCall) Return(arg0 []youtrack.Article, arg1 error) *YouTrackClientArticleListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientArticleListCall) Do(f func(context.Context, int, int) ([]youtrack.Article, error)) *YouTrackClientArticleListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientArticleListCall) DoAndReturn(f func(context.Context, int, int) ([]youtrack.Article, error)) *YouTrackClientArticleListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // ArticleUpdate mocks base method.
@@ -134,9 +278,33 @@ func (m *MockYouTrackClient) ArticleUpdate(ctx context.Context, id string, artic
 }
 
 // ArticleUpdate indicates an expected call of ArticleUpdate.
-func (mr *MockYouTrackClientMockRecorder) ArticleUpdate(ctx, id, article interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ArticleUpdate(ctx, id, article interface{}) *YouTrackClientArticleUpdateCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleUpdate", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleUpdate), ctx, id, article)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ArticleUpdate", reflect.TypeOf((*MockYouTrackClient)(nil).ArticleUpdate), ctx, id, article)
+	return &YouTrackClientArticleUpdateCall{Call: call}
+}
+
+// YouTrackClientArticleUpdateCall wrap *gomock.Call
+type YouTrackClientArticleUpdateCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientArticleUpdateCall) Return(arg0 youtrack.Article, arg1 error) *YouTrackClientArticleUpdateCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientArticleUpdateCall) Do(f func(context.Context, string, youtrack.Article) (youtrack.Article, error)) *YouTrackClientArticleUpdateCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientArticleUpdateCall) DoAndReturn(f func(context.Context, string, youtrack.Article) (youtrack.Article, error)) *YouTrackClientArticleUpdateCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // CommentCreate mocks base method.
@@ -149,9 +317,33 @@ func (m *MockYouTrackClient) CommentCreate(ctx context.Context, issueID string, 
 }
 
 // CommentCreate indicates an expected call of CommentCreate.
-func (mr *MockYouTrackClientMockRecorder) CommentCreate(ctx, issueID, comment interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) CommentCreate(ctx, issueID, comment interface{}) *YouTrackClientCommentCreateCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentCreate", reflect.TypeOf((*MockYouTrackClient)(nil).CommentCreate), ctx, issueID, comment)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentCreate", reflect.TypeOf((*MockYouTrackClient)(nil).CommentCreate), ctx, issueID, comment)
+	return &YouTrackClientCommentCreateCall{Call: call}
+}
+
+// YouTrackClientCommentCreateCall wrap *gomock.Call
+type YouTrackClientCommentCreateCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientCommentCreateCall) Return(arg0 youtrack.IssueComment, arg1 error) *YouTrackClientCommentCreateCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientCommentCreateCall) Do(f func(context.Context, string, youtrack.IssueComment) (youtrack.IssueComment, error)) *YouTrackClientCommentCreateCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientCommentCreateCall) DoAndReturn(f func(context.Context, string, youtrack.IssueComment) (youtrack.IssueComment, error)) *YouTrackClientCommentCreateCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // CommentDelete mocks base method.
@@ -163,9 +355,33 @@ func (m *MockYouTrackClient) CommentDelete(ctx context.Context, issueID, comment
 }
 
 // CommentDelete indicates an expected call of CommentDelete.
-func (mr *MockYouTrackClientMockRecorder) CommentDelete(ctx, issueID, commentID interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) CommentDelete(ctx, issueID, commentID interface{}) *YouTrackClientCommentDeleteCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentDelete", reflect.TypeOf((*MockYouTrackClient)(nil).CommentDelete), ctx, issueID, commentID)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentDelete", reflect.TypeOf((*MockYouTrackClient)(nil).CommentDelete), ctx, issueID, commentID)
+	return &YouTrackClientCommentDeleteCall{Call: call}
+}
+
+// YouTrackClientCommentDeleteCall wrap *gomock.Call
+type YouTrackClientCommentDeleteCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientCommentDeleteCall) Return(arg0 error) *YouTrackClientCommentDeleteCall {
+	c.Call = c.Call.Return(arg0)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientCommentDeleteCall) Do(f func(context.Context, string, string) error) *YouTrackClientCommentDeleteCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientCommentDeleteCall) DoAndReturn(f func(context.Context, string, string) error) *YouTrackClientCommentDeleteCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // CommentList mocks base method.
@@ -178,9 +394,33 @@ func (m *MockYouTrackClient) CommentList(ctx context.Context, issueID string, sk
 }
 
 // CommentList indicates an expected call of CommentList.
-func (mr *MockYouTrackClientMockRecorder) CommentList(ctx, issueID, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) CommentList(ctx, issueID, skip, top interface{}) *YouTrackClientCommentListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentList", reflect.TypeOf((*MockYouTrackClient)(nil).CommentList), ctx, issueID, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentList", reflect.TypeOf((*MockYouTrackClient)(nil).CommentList), ctx, issueID, skip, top)
+	return &YouTrackClientCommentListCall{Call: call}
+}
+
+// YouTrackClientCommentListCall wrap *gomock.Call
+type YouTrackClientCommentListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientCommentListCall) Return(arg0 []youtrack.IssueComment, arg1 error) *YouTrackClientCommentListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientCommentListCall) Do(f func(context.Context, string, int, int) ([]youtrack.IssueComment, error)) *YouTrackClientCommentListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientCommentListCall) DoAndReturn(f func(context.Context, string, int, int) ([]youtrack.IssueComment, error)) *YouTrackClientCommentListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // CommentUpdate mocks base method.
@@ -193,9 +433,33 @@ func (m *MockYouTrackClient) CommentUpdate(ctx context.Context, issueID, comment
 }
 
 // CommentUpdate indicates an expected call of CommentUpdate.
-func (mr *MockYouTrackClientMockRecorder) CommentUpdate(ctx, issueID, commentID, comment interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) CommentUpdate(ctx, issueID, commentID, comment interface{}) *YouTrackClientCommentUpdateCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentUpdate", reflect.TypeOf((*MockYouTrackClient)(nil).CommentUpdate), ctx, issueID, commentID, comment)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommentUpdate", reflect.TypeOf((*MockYouTrackClient)(nil).CommentUpdate), ctx, issueID, commentID, comment)
+	return &YouTrackClientCommentUpdateCall{Call: call}
+}
+
+// YouTrackClientCommentUpdateCall wrap *gomock.Call
+type YouTrackClientCommentUpdateCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientCommentUpdateCall) Return(arg0 youtrack.IssueComment, arg1 error) *YouTrackClientCommentUpdateCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientCommentUpdateCall) Do(f func(context.Context, string, string, youtrack.IssueComment) (youtrack.IssueComment, error)) *YouTrackClientCommentUpdateCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientCommentUpdateCall) DoAndReturn(f func(context.Context, string, string, youtrack.IssueComment) (youtrack.IssueComment, error)) *YouTrackClientCommentUpdateCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueActivityList mocks base method.
@@ -208,9 +472,33 @@ func (m *MockYouTrackClient) IssueActivityList(ctx context.Context, issueID, cat
 }
 
 // IssueActivityList indicates an expected call of IssueActivityList.
-func (mr *MockYouTrackClientMockRecorder) IssueActivityList(ctx, issueID, categories, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueActivityList(ctx, issueID, categories, skip, top interface{}) *YouTrackClientIssueActivityListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueActivityList", reflect.TypeOf((*MockYouTrackClient)(nil).IssueActivityList), ctx, issueID, categories, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueActivityList", reflect.TypeOf((*MockYouTrackClient)(nil).IssueActivityList), ctx, issueID, categories, skip, top)
+	return &YouTrackClientIssueActivityListCall{Call: call}
+}
+
+// YouTrackClientIssueActivityListCall wrap *gomock.Call
+type YouTrackClientIssueActivityListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueActivityListCall) Return(arg0 []youtrack.ActivityItem, arg1 error) *YouTrackClientIssueActivityListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueActivityListCall) Do(f func(context.Context, string, string, int, int) ([]youtrack.ActivityItem, error)) *YouTrackClientIssueActivityListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueActivityListCall) DoAndReturn(f func(context.Context, string, string, int, int) ([]youtrack.ActivityItem, error)) *YouTrackClientIssueActivityListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueAddTag mocks base method.
@@ -222,9 +510,33 @@ func (m *MockYouTrackClient) IssueAddTag(ctx context.Context, issueID, tagID str
 }
 
 // IssueAddTag indicates an expected call of IssueAddTag.
-func (mr *MockYouTrackClientMockRecorder) IssueAddTag(ctx, issueID, tagID interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueAddTag(ctx, issueID, tagID interface{}) *YouTrackClientIssueAddTagCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueAddTag", reflect.TypeOf((*MockYouTrackClient)(nil).IssueAddTag), ctx, issueID, tagID)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueAddTag", reflect.TypeOf((*MockYouTrackClient)(nil).IssueAddTag), ctx, issueID, tagID)
+	return &YouTrackClientIssueAddTagCall{Call: call}
+}
+
+// YouTrackClientIssueAddTagCall wrap *gomock.Call
+type YouTrackClientIssueAddTagCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueAddTagCall) Return(arg0 error) *YouTrackClientIssueAddTagCall {
+	c.Call = c.Call.Return(arg0)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueAddTagCall) Do(f func(context.Context, string, string) error) *YouTrackClientIssueAddTagCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueAddTagCall) DoAndReturn(f func(context.Context, string, string) error) *YouTrackClientIssueAddTagCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueCreate mocks base method.
@@ -237,9 +549,33 @@ func (m *MockYouTrackClient) IssueCreate(ctx context.Context, issue youtrack.Iss
 }
 
 // IssueCreate indicates an expected call of IssueCreate.
-func (mr *MockYouTrackClientMockRecorder) IssueCreate(ctx, issue interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueCreate(ctx, issue interface{}) *YouTrackClientIssueCreateCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueCreate", reflect.TypeOf((*MockYouTrackClient)(nil).IssueCreate), ctx, issue)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueCreate", reflect.TypeOf((*MockYouTrackClient)(nil).IssueCreate), ctx, issue)
+	return &YouTrackClientIssueCreateCall{Call: call}
+}
+
+// YouTrackClientIssueCreateCall wrap *gomock.Call
+type YouTrackClientIssueCreateCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueCreateCall) Return(arg0 youtrack.Issue, arg1 error) *YouTrackClientIssueCreateCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueCreateCall) Do(f func(context.Context, youtrack.Issue) (youtrack.Issue, error)) *YouTrackClientIssueCreateCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueCreateCall) DoAndReturn(f func(context.Context, youtrack.Issue) (youtrack.Issue, error)) *YouTrackClientIssueCreateCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueCustomFields mocks base method.
@@ -252,9 +588,33 @@ func (m *MockYouTrackClient) IssueCustomFields(ctx context.Context, issueID stri
 }
 
 // IssueCustomFields indicates an expected call of IssueCustomFields.
-func (mr *MockYouTrackClientMockRecorder) IssueCustomFields(ctx, issueID interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueCustomFields(ctx, issueID interface{}) *YouTrackClientIssueCustomFieldsCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueCustomFields", reflect.TypeOf((*MockYouTrackClient)(nil).IssueCustomFields), ctx, issueID)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueCustomFields", reflect.TypeOf((*MockYouTrackClient)(nil).IssueCustomFields), ctx, issueID)
+	return &YouTrackClientIssueCustomFieldsCall{Call: call}
+}
+
+// YouTrackClientIssueCustomFieldsCall wrap *gomock.Call
+type YouTrackClientIssueCustomFieldsCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueCustomFieldsCall) Return(arg0 []youtrack.IssueCustomField, arg1 error) *YouTrackClientIssueCustomFieldsCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueCustomFieldsCall) Do(f func(context.Context, string) ([]youtrack.IssueCustomField, error)) *YouTrackClientIssueCustomFieldsCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueCustomFieldsCall) DoAndReturn(f func(context.Context, string) ([]youtrack.IssueCustomField, error)) *YouTrackClientIssueCustomFieldsCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueDelete mocks base method.
@@ -266,9 +626,33 @@ func (m *MockYouTrackClient) IssueDelete(ctx context.Context, id string) error {
 }
 
 // IssueDelete indicates an expected call of IssueDelete.
-func (mr *MockYouTrackClientMockRecorder) IssueDelete(ctx, id interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueDelete(ctx, id interface{}) *YouTrackClientIssueDeleteCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueDelete", reflect.TypeOf((*MockYouTrackClient)(nil).IssueDelete), ctx, id)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueDelete", reflect.TypeOf((*MockYouTrackClient)(nil).IssueDelete), ctx, id)
+	return &YouTrackClientIssueDeleteCall{Call: call}
+}
+
+// YouTrackClientIssueDeleteCall wrap *gomock.Call
+type YouTrackClientIssueDeleteCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueDeleteCall) Return(arg0 error) *YouTrackClientIssueDeleteCall {
+	c.Call = c.Call.Return(arg0)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueDeleteCall) Do(f func(context.Context, string) error) *YouTrackClientIssueDeleteCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueDeleteCall) DoAndReturn(f func(context.Context, string) error) *YouTrackClientIssueDeleteCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueGet mocks base method.
@@ -281,9 +665,33 @@ func (m *MockYouTrackClient) IssueGet(ctx context.Context, id string) (youtrack.
 }
 
 // IssueGet indicates an expected call of IssueGet.
-func (mr *MockYouTrackClientMockRecorder) IssueGet(ctx, id interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueGet(ctx, id interface{}) *YouTrackClientIssueGetCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueGet", reflect.TypeOf((*MockYouTrackClient)(nil).IssueGet), ctx, id)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueGet", reflect.TypeOf((*MockYouTrackClient)(nil).IssueGet), ctx, id)
+	return &YouTrackClientIssueGetCall{Call: call}
+}
+
+// YouTrackClientIssueGetCall wrap *gomock.Call
+type YouTrackClientIssueGetCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueGetCall) Return(arg0 youtrack.Issue, arg1 error) *YouTrackClientIssueGetCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueGetCall) Do(f func(context.Context, string) (youtrack.Issue, error)) *YouTrackClientIssueGetCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueGetCall) DoAndReturn(f func(context.Context, string) (youtrack.Issue, error)) *YouTrackClientIssueGetCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueGetLinks mocks base method.
@@ -296,9 +704,71 @@ func (m *MockYouTrackClient) IssueGetLinks(ctx context.Context, issueID string) 
 }
 
 // IssueGetLinks indicates an expected call of IssueGetLinks.
-func (mr *MockYouTrackClientMockRecorder) IssueGetLinks(ctx, issueID interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueGetLinks(ctx, issueID interface{}) *YouTrackClientIssueGetLinksCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueGetLinks", reflect.TypeOf((*MockYouTrackClient)(nil).IssueGetLinks), ctx, issueID)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueGetLinks", reflect.TypeOf((*MockYouTrackClient)(nil).IssueGetLinks), ctx, issueID)
+	return &YouTrackClientIssueGetLinksCall{Call: call}
+}
+
+// YouTrackClientIssueGetLinksCall wrap *gomock.Call
+type YouTrackClientIssueGetLinksCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueGetLinksCall) Return(arg0 []youtrack.IssueLink, arg1 error) *YouTrackClientIssueGetLinksCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueGetLinksCall) Do(f func(context.Context, string) ([]youtrack.IssueLink, error)) *YouTrackClientIssueGetLinksCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueGetLinksCall) DoAndReturn(f func(context.Context, string) ([]youtrack.IssueLink, error)) *YouTrackClientIssueGetLinksCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
+}
+
+// IssueLink mocks base method.
+func (m *MockYouTrackClient) IssueLink(ctx context.Context, sourceID, linkPhrase, targetID string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "IssueLink", ctx, sourceID, linkPhrase, targetID)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// IssueLink indicates an expected call of IssueLink.
+func (mr *MockYouTrackClientMockRecorder) IssueLink(ctx, sourceID, linkPhrase, targetID interface{}) *YouTrackClientIssueLinkCall {
+	mr.mock.ctrl.T.Helper()
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueLink", reflect.TypeOf((*MockYouTrackClient)(nil).IssueLink), ctx, sourceID, linkPhrase, targetID)
+	return &YouTrackClientIssueLinkCall{Call: call}
+}
+
+// YouTrackClientIssueLinkCall wrap *gomock.Call
+type YouTrackClientIssueLinkCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueLinkCall) Return(arg0 error) *YouTrackClientIssueLinkCall {
+	c.Call = c.Call.Return(arg0)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueLinkCall) Do(f func(context.Context, string, string, string) error) *YouTrackClientIssueLinkCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueLinkCall) DoAndReturn(f func(context.Context, string, string, string) error) *YouTrackClientIssueLinkCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueRemoveTag mocks base method.
@@ -310,9 +780,33 @@ func (m *MockYouTrackClient) IssueRemoveTag(ctx context.Context, issueID, tagID 
 }
 
 // IssueRemoveTag indicates an expected call of IssueRemoveTag.
-func (mr *MockYouTrackClientMockRecorder) IssueRemoveTag(ctx, issueID, tagID interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueRemoveTag(ctx, issueID, tagID interface{}) *YouTrackClientIssueRemoveTagCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueRemoveTag", reflect.TypeOf((*MockYouTrackClient)(nil).IssueRemoveTag), ctx, issueID, tagID)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueRemoveTag", reflect.TypeOf((*MockYouTrackClient)(nil).IssueRemoveTag), ctx, issueID, tagID)
+	return &YouTrackClientIssueRemoveTagCall{Call: call}
+}
+
+// YouTrackClientIssueRemoveTagCall wrap *gomock.Call
+type YouTrackClientIssueRemoveTagCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueRemoveTagCall) Return(arg0 error) *YouTrackClientIssueRemoveTagCall {
+	c.Call = c.Call.Return(arg0)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueRemoveTagCall) Do(f func(context.Context, string, string) error) *YouTrackClientIssueRemoveTagCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueRemoveTagCall) DoAndReturn(f func(context.Context, string, string) error) *YouTrackClientIssueRemoveTagCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueSearch mocks base method.
@@ -325,9 +819,71 @@ func (m *MockYouTrackClient) IssueSearch(ctx context.Context, query string, skip
 }
 
 // IssueSearch indicates an expected call of IssueSearch.
-func (mr *MockYouTrackClientMockRecorder) IssueSearch(ctx, query, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueSearch(ctx, query, skip, top interface{}) *YouTrackClientIssueSearchCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueSearch", reflect.TypeOf((*MockYouTrackClient)(nil).IssueSearch), ctx, query, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueSearch", reflect.TypeOf((*MockYouTrackClient)(nil).IssueSearch), ctx, query, skip, top)
+	return &YouTrackClientIssueSearchCall{Call: call}
+}
+
+// YouTrackClientIssueSearchCall wrap *gomock.Call
+type YouTrackClientIssueSearchCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueSearchCall) Return(arg0 []youtrack.Issue, arg1 error) *YouTrackClientIssueSearchCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueSearchCall) Do(f func(context.Context, string, int, int) ([]youtrack.Issue, error)) *YouTrackClientIssueSearchCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueSearchCall) DoAndReturn(f func(context.Context, string, int, int) ([]youtrack.Issue, error)) *YouTrackClientIssueSearchCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
+}
+
+// IssueUnlink mocks base method.
+func (m *MockYouTrackClient) IssueUnlink(ctx context.Context, sourceID, linkPhrase, targetID string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "IssueUnlink", ctx, sourceID, linkPhrase, targetID)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// IssueUnlink indicates an expected call of IssueUnlink.
+func (mr *MockYouTrackClientMockRecorder) IssueUnlink(ctx, sourceID, linkPhrase, targetID interface{}) *YouTrackClientIssueUnlinkCall {
+	mr.mock.ctrl.T.Helper()
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueUnlink", reflect.TypeOf((*MockYouTrackClient)(nil).IssueUnlink), ctx, sourceID, linkPhrase, targetID)
+	return &YouTrackClientIssueUnlinkCall{Call: call}
+}
+
+// YouTrackClientIssueUnlinkCall wrap *gomock.Call
+type YouTrackClientIssueUnlinkCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueUnlinkCall) Return(arg0 error) *YouTrackClientIssueUnlinkCall {
+	c.Call = c.Call.Return(arg0)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueUnlinkCall) Do(f func(context.Context, string, string, string) error) *YouTrackClientIssueUnlinkCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueUnlinkCall) DoAndReturn(f func(context.Context, string, string, string) error) *YouTrackClientIssueUnlinkCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueUpdate mocks base method.
@@ -340,9 +896,33 @@ func (m *MockYouTrackClient) IssueUpdate(ctx context.Context, id string, issue y
 }
 
 // IssueUpdate indicates an expected call of IssueUpdate.
-func (mr *MockYouTrackClientMockRecorder) IssueUpdate(ctx, id, issue interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueUpdate(ctx, id, issue interface{}) *YouTrackClientIssueUpdateCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueUpdate", reflect.TypeOf((*MockYouTrackClient)(nil).IssueUpdate), ctx, id, issue)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueUpdate", reflect.TypeOf((*MockYouTrackClient)(nil).IssueUpdate), ctx, id, issue)
+	return &YouTrackClientIssueUpdateCall{Call: call}
+}
+
+// YouTrackClientIssueUpdateCall wrap *gomock.Call
+type YouTrackClientIssueUpdateCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueUpdateCall) Return(arg0 youtrack.Issue, arg1 error) *YouTrackClientIssueUpdateCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueUpdateCall) Do(f func(context.Context, string, youtrack.Issue) (youtrack.Issue, error)) *YouTrackClientIssueUpdateCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueUpdateCall) DoAndReturn(f func(context.Context, string, youtrack.Issue) (youtrack.Issue, error)) *YouTrackClientIssueUpdateCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // IssueUpdateField mocks base method.
@@ -355,9 +935,72 @@ func (m *MockYouTrackClient) IssueUpdateField(ctx context.Context, issueID, fiel
 }
 
 // IssueUpdateField indicates an expected call of IssueUpdateField.
-func (mr *MockYouTrackClientMockRecorder) IssueUpdateField(ctx, issueID, fieldID, field interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) IssueUpdateField(ctx, issueID, fieldID, field interface{}) *YouTrackClientIssueUpdateFieldCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueUpdateField", reflect.TypeOf((*MockYouTrackClient)(nil).IssueUpdateField), ctx, issueID, fieldID, field)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IssueUpdateField", reflect.TypeOf((*MockYouTrackClient)(nil).IssueUpdateField), ctx, issueID, fieldID, field)
+	return &YouTrackClientIssueUpdateFieldCall{Call: call}
+}
+
+// YouTrackClientIssueUpdateFieldCall wrap *gomock.Call
+type YouTrackClientIssueUpdateFieldCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientIssueUpdateFieldCall) Return(arg0 youtrack.IssueCustomField, arg1 error) *YouTrackClientIssueUpdateFieldCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientIssueUpdateFieldCall) Do(f func(context.Context, string, string, youtrack.IssueCustomField) (youtrack.IssueCustomField, error)) *YouTrackClientIssueUpdateFieldCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientIssueUpdateFieldCall) DoAndReturn(f func(context.Context, string, string, youtrack.IssueCustomField) (youtrack.IssueCustomField, error)) *YouTrackClientIssueUpdateFieldCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
+}
+
+// ListIssueLinkTypes mocks base method.
+func (m *MockYouTrackClient) ListIssueLinkTypes(ctx context.Context) ([]youtrack.IssueLinkType, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListIssueLinkTypes", ctx)
+	ret0, _ := ret[0].([]youtrack.IssueLinkType)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListIssueLinkTypes indicates an expected call of ListIssueLinkTypes.
+func (mr *MockYouTrackClientMockRecorder) ListIssueLinkTypes(ctx interface{}) *YouTrackClientListIssueLinkTypesCall {
+	mr.mock.ctrl.T.Helper()
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListIssueLinkTypes", reflect.TypeOf((*MockYouTrackClient)(nil).ListIssueLinkTypes), ctx)
+	return &YouTrackClientListIssueLinkTypesCall{Call: call}
+}
+
+// YouTrackClientListIssueLinkTypesCall wrap *gomock.Call
+type YouTrackClientListIssueLinkTypesCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientListIssueLinkTypesCall) Return(arg0 []youtrack.IssueLinkType, arg1 error) *YouTrackClientListIssueLinkTypesCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientListIssueLinkTypesCall) Do(f func(context.Context) ([]youtrack.IssueLinkType, error)) *YouTrackClientListIssueLinkTypesCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientListIssueLinkTypesCall) DoAndReturn(f func(context.Context) ([]youtrack.IssueLinkType, error)) *YouTrackClientListIssueLinkTypesCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // ProjectGet mocks base method.
@@ -370,9 +1013,33 @@ func (m *MockYouTrackClient) ProjectGet(ctx context.Context, id string) (youtrac
 }
 
 // ProjectGet indicates an expected call of ProjectGet.
-func (mr *MockYouTrackClientMockRecorder) ProjectGet(ctx, id interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ProjectGet(ctx, id interface{}) *YouTrackClientProjectGetCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ProjectGet", reflect.TypeOf((*MockYouTrackClient)(nil).ProjectGet), ctx, id)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ProjectGet", reflect.TypeOf((*MockYouTrackClient)(nil).ProjectGet), ctx, id)
+	return &YouTrackClientProjectGetCall{Call: call}
+}
+
+// YouTrackClientProjectGetCall wrap *gomock.Call
+type YouTrackClientProjectGetCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientProjectGetCall) Return(arg0 youtrack.Project, arg1 error) *YouTrackClientProjectGetCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientProjectGetCall) Do(f func(context.Context, string) (youtrack.Project, error)) *YouTrackClientProjectGetCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientProjectGetCall) DoAndReturn(f func(context.Context, string) (youtrack.Project, error)) *YouTrackClientProjectGetCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // ProjectList mocks base method.
@@ -385,9 +1052,33 @@ func (m *MockYouTrackClient) ProjectList(ctx context.Context, skip, top int) ([]
 }
 
 // ProjectList indicates an expected call of ProjectList.
-func (mr *MockYouTrackClientMockRecorder) ProjectList(ctx, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) ProjectList(ctx, skip, top interface{}) *YouTrackClientProjectListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ProjectList", reflect.TypeOf((*MockYouTrackClient)(nil).ProjectList), ctx, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ProjectList", reflect.TypeOf((*MockYouTrackClient)(nil).ProjectList), ctx, skip, top)
+	return &YouTrackClientProjectListCall{Call: call}
+}
+
+// YouTrackClientProjectListCall wrap *gomock.Call
+type YouTrackClientProjectListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientProjectListCall) Return(arg0 []youtrack.Project, arg1 error) *YouTrackClientProjectListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientProjectListCall) Do(f func(context.Context, int, int) ([]youtrack.Project, error)) *YouTrackClientProjectListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientProjectListCall) DoAndReturn(f func(context.Context, int, int) ([]youtrack.Project, error)) *YouTrackClientProjectListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // SprintGet mocks base method.
@@ -400,9 +1091,33 @@ func (m *MockYouTrackClient) SprintGet(ctx context.Context, agileID, sprintID st
 }
 
 // SprintGet indicates an expected call of SprintGet.
-func (mr *MockYouTrackClientMockRecorder) SprintGet(ctx, agileID, sprintID interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) SprintGet(ctx, agileID, sprintID interface{}) *YouTrackClientSprintGetCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SprintGet", reflect.TypeOf((*MockYouTrackClient)(nil).SprintGet), ctx, agileID, sprintID)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SprintGet", reflect.TypeOf((*MockYouTrackClient)(nil).SprintGet), ctx, agileID, sprintID)
+	return &YouTrackClientSprintGetCall{Call: call}
+}
+
+// YouTrackClientSprintGetCall wrap *gomock.Call
+type YouTrackClientSprintGetCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientSprintGetCall) Return(arg0 youtrack.Sprint, arg1 error) *YouTrackClientSprintGetCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientSprintGetCall) Do(f func(context.Context, string, string) (youtrack.Sprint, error)) *YouTrackClientSprintGetCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientSprintGetCall) DoAndReturn(f func(context.Context, string, string) (youtrack.Sprint, error)) *YouTrackClientSprintGetCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // SprintList mocks base method.
@@ -415,9 +1130,33 @@ func (m *MockYouTrackClient) SprintList(ctx context.Context, agileID string, ski
 }
 
 // SprintList indicates an expected call of SprintList.
-func (mr *MockYouTrackClientMockRecorder) SprintList(ctx, agileID, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) SprintList(ctx, agileID, skip, top interface{}) *YouTrackClientSprintListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SprintList", reflect.TypeOf((*MockYouTrackClient)(nil).SprintList), ctx, agileID, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SprintList", reflect.TypeOf((*MockYouTrackClient)(nil).SprintList), ctx, agileID, skip, top)
+	return &YouTrackClientSprintListCall{Call: call}
+}
+
+// YouTrackClientSprintListCall wrap *gomock.Call
+type YouTrackClientSprintListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientSprintListCall) Return(arg0 []youtrack.Sprint, arg1 error) *YouTrackClientSprintListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientSprintListCall) Do(f func(context.Context, string, int, int) ([]youtrack.Sprint, error)) *YouTrackClientSprintListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientSprintListCall) DoAndReturn(f func(context.Context, string, int, int) ([]youtrack.Sprint, error)) *YouTrackClientSprintListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // TagList mocks base method.
@@ -430,9 +1169,33 @@ func (m *MockYouTrackClient) TagList(ctx context.Context, skip, top int) ([]yout
 }
 
 // TagList indicates an expected call of TagList.
-func (mr *MockYouTrackClientMockRecorder) TagList(ctx, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) TagList(ctx, skip, top interface{}) *YouTrackClientTagListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TagList", reflect.TypeOf((*MockYouTrackClient)(nil).TagList), ctx, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TagList", reflect.TypeOf((*MockYouTrackClient)(nil).TagList), ctx, skip, top)
+	return &YouTrackClientTagListCall{Call: call}
+}
+
+// YouTrackClientTagListCall wrap *gomock.Call
+type YouTrackClientTagListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientTagListCall) Return(arg0 []youtrack.IssueTag, arg1 error) *YouTrackClientTagListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientTagListCall) Do(f func(context.Context, int, int) ([]youtrack.IssueTag, error)) *YouTrackClientTagListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientTagListCall) DoAndReturn(f func(context.Context, int, int) ([]youtrack.IssueTag, error)) *YouTrackClientTagListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // UserCurrent mocks base method.
@@ -445,9 +1208,33 @@ func (m *MockYouTrackClient) UserCurrent(ctx context.Context) (youtrack.User, er
 }
 
 // UserCurrent indicates an expected call of UserCurrent.
-func (mr *MockYouTrackClientMockRecorder) UserCurrent(ctx interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) UserCurrent(ctx interface{}) *YouTrackClientUserCurrentCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserCurrent", reflect.TypeOf((*MockYouTrackClient)(nil).UserCurrent), ctx)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserCurrent", reflect.TypeOf((*MockYouTrackClient)(nil).UserCurrent), ctx)
+	return &YouTrackClientUserCurrentCall{Call: call}
+}
+
+// YouTrackClientUserCurrentCall wrap *gomock.Call
+type YouTrackClientUserCurrentCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientUserCurrentCall) Return(arg0 youtrack.User, arg1 error) *YouTrackClientUserCurrentCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientUserCurrentCall) Do(f func(context.Context) (youtrack.User, error)) *YouTrackClientUserCurrentCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientUserCurrentCall) DoAndReturn(f func(context.Context) (youtrack.User, error)) *YouTrackClientUserCurrentCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // UserList mocks base method.
@@ -460,9 +1247,33 @@ func (m *MockYouTrackClient) UserList(ctx context.Context, query string, skip, t
 }
 
 // UserList indicates an expected call of UserList.
-func (mr *MockYouTrackClientMockRecorder) UserList(ctx, query, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) UserList(ctx, query, skip, top interface{}) *YouTrackClientUserListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserList", reflect.TypeOf((*MockYouTrackClient)(nil).UserList), ctx, query, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserList", reflect.TypeOf((*MockYouTrackClient)(nil).UserList), ctx, query, skip, top)
+	return &YouTrackClientUserListCall{Call: call}
+}
+
+// YouTrackClientUserListCall wrap *gomock.Call
+type YouTrackClientUserListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientUserListCall) Return(arg0 []youtrack.User, arg1 error) *YouTrackClientUserListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientUserListCall) Do(f func(context.Context, string, int, int) ([]youtrack.User, error)) *YouTrackClientUserListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientUserListCall) DoAndReturn(f func(context.Context, string, int, int) ([]youtrack.User, error)) *YouTrackClientUserListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // WorkItemCreate mocks base method.
@@ -475,9 +1286,33 @@ func (m *MockYouTrackClient) WorkItemCreate(ctx context.Context, issueID string,
 }
 
 // WorkItemCreate indicates an expected call of WorkItemCreate.
-func (mr *MockYouTrackClientMockRecorder) WorkItemCreate(ctx, issueID, item interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) WorkItemCreate(ctx, issueID, item interface{}) *YouTrackClientWorkItemCreateCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WorkItemCreate", reflect.TypeOf((*MockYouTrackClient)(nil).WorkItemCreate), ctx, issueID, item)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WorkItemCreate", reflect.TypeOf((*MockYouTrackClient)(nil).WorkItemCreate), ctx, issueID, item)
+	return &YouTrackClientWorkItemCreateCall{Call: call}
+}
+
+// YouTrackClientWorkItemCreateCall wrap *gomock.Call
+type YouTrackClientWorkItemCreateCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientWorkItemCreateCall) Return(arg0 youtrack.IssueWorkItem, arg1 error) *YouTrackClientWorkItemCreateCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientWorkItemCreateCall) Do(f func(context.Context, string, youtrack.IssueWorkItem) (youtrack.IssueWorkItem, error)) *YouTrackClientWorkItemCreateCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientWorkItemCreateCall) DoAndReturn(f func(context.Context, string, youtrack.IssueWorkItem) (youtrack.IssueWorkItem, error)) *YouTrackClientWorkItemCreateCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }
 
 // WorkItemList mocks base method.
@@ -490,7 +1325,31 @@ func (m *MockYouTrackClient) WorkItemList(ctx context.Context, issueID string, s
 }
 
 // WorkItemList indicates an expected call of WorkItemList.
-func (mr *MockYouTrackClientMockRecorder) WorkItemList(ctx, issueID, skip, top interface{}) *gomock.Call {
+func (mr *MockYouTrackClientMockRecorder) WorkItemList(ctx, issueID, skip, top interface{}) *YouTrackClientWorkItemListCall {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WorkItemList", reflect.TypeOf((*MockYouTrackClient)(nil).WorkItemList), ctx, issueID, skip, top)
+	call := mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WorkItemList", reflect.TypeOf((*MockYouTrackClient)(nil).WorkItemList), ctx, issueID, skip, top)
+	return &YouTrackClientWorkItemListCall{Call: call}
+}
+
+// YouTrackClientWorkItemListCall wrap *gomock.Call
+type YouTrackClientWorkItemListCall struct {
+	*gomock.Call
+}
+
+// Return rewrite *gomock.Call.Return
+func (c *YouTrackClientWorkItemListCall) Return(arg0 []youtrack.IssueWorkItem, arg1 error) *YouTrackClientWorkItemListCall {
+	c.Call = c.Call.Return(arg0, arg1)
+	return c
+}
+
+// Do rewrite *gomock.Call.Do
+func (c *YouTrackClientWorkItemListCall) Do(f func(context.Context, string, int, int) ([]youtrack.IssueWorkItem, error)) *YouTrackClientWorkItemListCall {
+	c.Call = c.Call.Do(f)
+	return c
+}
+
+// DoAndReturn rewrite *gomock.Call.DoAndReturn
+func (c *YouTrackClientWorkItemListCall) DoAndReturn(f func(context.Context, string, int, int) ([]youtrack.IssueWorkItem, error)) *YouTrackClientWorkItemListCall {
+	c.Call = c.Call.DoAndReturn(f)
+	return c
 }

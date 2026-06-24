@@ -108,6 +108,9 @@ network.
 | `issue_add_tag` | Add a tag to an issue |
 | `issue_remove_tag` | Remove a tag from an issue |
 | `issue_get_links` | Get issue links (related, blocks, duplicates, etc.) |
+| `issue_link_types` | List available link types and their directed phrases |
+| `issue_link` | Link two issues (e.g. `link_type: "subtask of"` to set a parent) |
+| `issue_unlink` | Remove a link between two issues |
 
 ### Projects
 
