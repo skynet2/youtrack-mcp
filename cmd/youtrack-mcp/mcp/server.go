@@ -17,5 +17,6 @@ func NewServer(client YouTrackClient, log zerolog.Logger, version string) *serve
 	registerCustomFieldTools(s, client, log)
 	registerKnowledgeBaseTools(s, client, log)
 	registerActivityTools(s, client, log)
+	registerLinkTools(s, client, log)
 	return s
 }

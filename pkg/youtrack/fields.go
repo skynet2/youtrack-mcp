@@ -16,4 +16,5 @@ const (
 	ArticleDetailFields = "$type,id,idReadable,summary,content,created,updated,project($type,id,name,shortName),reporter($type,id,login,fullName),updatedBy($type,id,login,fullName),parentArticle($type,id,idReadable,summary),childArticles($type,id,idReadable,summary),hasChildren,visibility($type,id)"
 	ActivityFields      = "$type,id,author($type,id,login,fullName),timestamp,added,removed,target,targetMember,field($type,id,name,customField($type,id,name)),category($type,id)"
 	IssueLinkFields     = "$type,id,direction,linkType($type,id,name,localizedName),issues($type,id,idReadable,summary)"
+	IssueLinkTypeFields = "$type,id,name,localizedName,sourceToTarget,targetToSource,directed"
 )

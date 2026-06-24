@@ -18,6 +18,9 @@ type YouTrackClient interface {
 	IssueAddTag(ctx context.Context, issueID, tagID string) error
 	IssueRemoveTag(ctx context.Context, issueID, tagID string) error
 	IssueGetLinks(ctx context.Context, issueID string) ([]youtrack.IssueLink, error)
+	ListIssueLinkTypes(ctx context.Context) ([]youtrack.IssueLinkType, error)
+	IssueLink(ctx context.Context, sourceID, linkPhrase, targetID string) error
+	IssueUnlink(ctx context.Context, sourceID, linkPhrase, targetID string) error
 	// Projects
 	ProjectList(ctx context.Context, skip, top int) ([]youtrack.Project, error)
 	ProjectGet(ctx context.Context, id string) (youtrack.Project, error)

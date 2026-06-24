@@ -109,10 +109,13 @@ type IssueLink struct {
 }
 
 type IssueLinkType struct {
-	Type          string `json:"$type,omitempty"`
-	ID            string `json:"id,omitempty"`
-	Name          string `json:"name,omitempty"`
-	LocalizedName string `json:"localizedName,omitempty"`
+	Type           string `json:"$type,omitempty"`
+	ID             string `json:"id,omitempty"`
+	Name           string `json:"name,omitempty"`
+	LocalizedName  string `json:"localizedName,omitempty"`
+	SourceToTarget string `json:"sourceToTarget,omitempty"`
+	TargetToSource string `json:"targetToSource,omitempty"`
+	Directed       bool   `json:"directed,omitempty"`
 }
 
 type IssueAttachment struct {
